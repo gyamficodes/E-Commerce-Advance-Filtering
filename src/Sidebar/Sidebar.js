@@ -3,10 +3,14 @@ import Price from "./Price/Price";
 import Colors from "./Colors/Colors";
 import "./Sidebar.css";
 
+
+
 const Sidebar = ({ handleChange }) => {
+
+
   return (
     <>
-      <section className="sidebar">
+      <section id="side" className="sidebar ">
       
         <Category handleChange={handleChange} />
         <Price handleChange={handleChange} />

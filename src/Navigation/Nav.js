@@ -1,11 +1,15 @@
 import { FiHeart } from "react-icons/fi";
 import { AiOutlineShoppingCart, AiOutlineUserAdd } from "react-icons/ai";
 import "./Nav.css";
+import { IoMenuSharp } from "react-icons/io5";
+const Nav = ({ handleInputChange, query, handleShowMenu }) => {
 
-const Nav = ({ handleInputChange, query }) => {
+
+
   return (
     <nav className=" flex items-center justify-between px-5 h-full">
-      <div className="">
+      <div className=" flex items-center gap-3">
+      <IoMenuSharp  onClick={handleShowMenu} className=" flex xl:hidden text-[30px] cursor-pointer"/>
         <input
           className="search-input pl-2"
           type="text"

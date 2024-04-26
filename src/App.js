@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { IoMdClose } from "react-icons/io";
 import Navigation from "./Navigation/Nav";
 import Products from "./Products/Products";
 import products from "./db/data";
@@ -7,7 +7,7 @@ import Recommended from "./Recommended/Recommended";
 import Sidebar from "./Sidebar/Sidebar";
 import Card from "./components/Card";
 import "./index.css";
-
+import { useEffect } from "react";
 function App() {
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -69,17 +69,34 @@ function App() {
 
   const result = filteredData(products, selectedCategory, query);
 
+  const mobileMenu = document.querySelector('#sideBar');
+  // Function to handle showing the mobile menu
+  function handleShowMenu() {
+    // Remove the '-translate-x-[100%]' class and add 'translate-x-[0%]' class to 'mobileMenu'
+    mobileMenu.classList.remove('-translate-x-[100%]');
+    mobileMenu.classList.add('translate-x-[0%]');
+  }
+  
+  // Function to hide the mobile menu
+  function hideMenu() {
+    // Add the '-translate-x-[100%]' class and remove 'translate-x-[0%]' class from 'mobileMenu'
+    mobileMenu.classList.add('-translate-x-[100%]');
+    mobileMenu.classList.remove('translate-x-[0%]');
+  }
+  
+
   return (
     <>
     <section className=" flex h-screen bg-white overflow-hidden">
       {/* sidebar */}
-       <div className=" w-[15%] hidden lg:flex flex-col h-full border-r">
-        <div className="h-[10%] w-full border-b">
+       <div id="sideBar" className="-translate-x-[100%] transition-all duration-700  ease-in-out xl:translate-x-[0%] xl:transition-all  xl:duration-0  w-[50%] sm:w-[30%] lg:w-[15%] flex bg-white flex-col h-full border-r xl:relative fixed z-[999] top-0 left-0 bottom-0">
+        <div className="h-[10%] w-full border-b relative">
         <div className=" flex items-center justify-center h-full text-[30px] ">
           <h1>🛒</h1>
         </div>
+        <IoMdClose onClick={hideMenu}  className=" xl:hidden absolute top-0 right-0 w-7 h-7 border cursor-pointer hover:border-red-600"/>
         </div>
-        <div className=" h-[90%] w-full flex items-center justify-center">
+        <div className=" h-[90%] w-full flex items-center justify-center  overflow-hidden overflow-y-auto">
         <Sidebar handleChange={handleChange} />
         </div>
  
@@ -89,7 +106,7 @@ function App() {
        {/* main */}
        <div className="w-full h-full">
        <div className=" h-[10%] w-full ">
-       <Navigation query={query} handleInputChange={handleInputChange} />
+       <Navigation query={query} handleInputChange={handleInputChange} handleShowMenu={handleShowMenu} />
        </div>
         <div className=" h-[90%] w-full overflow-hidden overflow-y-scroll">
       <Recommended handleClick={handleClick} />
