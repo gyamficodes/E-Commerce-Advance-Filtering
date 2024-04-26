@@ -1,0 +1,20 @@
+nav {
+  
+  border-bottom: 2px solid #f3f3f3;
+
+}
+
+input {
+ height: 40px;
+  border: none;
+  background: #f7f6f6;
+  outline: none;
+  
+  width: 14rem;
+}
+
+.nav-icons {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 2rem;
+}
