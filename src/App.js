@@ -7,8 +7,26 @@ import Recommended from "./Recommended/Recommended";
 import Sidebar from "./Sidebar/Sidebar";
 import Card from "./components/Card";
 import "./index.css";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 function App() {
+
+// Function to handle showing the mobile menu
+function handleShowMenu() {
+  const mobileMenu = document.querySelector('#sideBar');
+  // Remove the '-translate-x-[100%]' class and add 'translate-x-[0%]' class to 'mobileMenu'
+  mobileMenu.classList.remove('-translate-x-[100%]');
+  mobileMenu.classList.add('translate-x-[0%]');
+}
+
+// Function to hide the mobile menu
+function hideMenu() {
+  const mobileMenu = document.querySelector('#sideBar');
+  // Add the '-translate-x-[100%]' class and remove 'translate-x-[0%]' class from 'mobileMenu'
+  mobileMenu.classList.add('-translate-x-[100%]');
+  mobileMenu.classList.remove('translate-x-[0%]');
+}
+
+
   const [selectedCategory, setSelectedCategory] = useState(null);
 
   // ----------- Input Filter -----------
@@ -69,20 +87,7 @@ function App() {
 
   const result = filteredData(products, selectedCategory, query);
 
-  const mobileMenu = document.querySelector('#sideBar');
-  // Function to handle showing the mobile menu
-  function handleShowMenu() {
-    // Remove the '-translate-x-[100%]' class and add 'translate-x-[0%]' class to 'mobileMenu'
-    mobileMenu.classList.remove('-translate-x-[100%]');
-    mobileMenu.classList.add('translate-x-[0%]');
-  }
-  
-  // Function to hide the mobile menu
-  function hideMenu() {
-    // Add the '-translate-x-[100%]' class and remove 'translate-x-[0%]' class from 'mobileMenu'
-    mobileMenu.classList.add('-translate-x-[100%]');
-    mobileMenu.classList.remove('translate-x-[0%]');
-  }
+
   
 
   return (
